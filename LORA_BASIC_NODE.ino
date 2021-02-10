@@ -1,4 +1,4 @@
-
+  
 #include <SPI.h>
 #include <RH_RF95.h>
 
@@ -27,7 +27,7 @@ void loop()
 {
   if (runEvery(5000)) {
     Serial.print("Sending: ");
-    String payload = deviceID + String(random(20, 40));
+    String payload = deviceID + String(random(20, 40)) + "\n";
     Serial.println(payload);
     rf95.send(payload.c_str(), payload.length());
     rf95.waitPacketSent();

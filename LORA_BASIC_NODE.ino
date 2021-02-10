@@ -9,6 +9,8 @@ int txPower = 20;
 
 long prevMillis = 0;
 
+String deviceID = "LORD01,01,";
+String payload = "";
 void setup()
 {
   Serial.begin(9600);
@@ -25,10 +27,11 @@ void loop()
 {
   if (runEvery(5000)) {
     Serial.print("Sending: ");
-    String payload = "LORD0101" + String(random(20, 40));
+    String payload = deviceID + String(random(20, 40));
     Serial.println(payload);
     rf95.send(payload.c_str(), payload.length());
-    // rf95.waitPacketSent();
+    rf95.waitPacketSent();
+    payload = "";
   }
 
 }
